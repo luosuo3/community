@@ -11,6 +11,8 @@
 ## 工具
 [Git](https://git-scm.com/download)
 [Visual Paradigm](https://www.visual-paradigm.com)
+flayway 
+[lombok](https://www.cnblogs.com/heyonggang/p/8638374.html)
 
 ##脚本
 sql
@@ -26,4 +28,7 @@ create table user
     gmt_create   varchar(200)      null,
     gmt_modified varchar(200)       null
 );
+```
+```bash
+mvn flyway:migrate
 ```

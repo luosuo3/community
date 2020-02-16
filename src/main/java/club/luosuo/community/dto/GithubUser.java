@@ -1,10 +1,13 @@
 package club.luosuo.community.dto;
 
+import lombok.Data;
+
+@Data
 public class GithubUser {
     private String name;
-    private long id;
+    private Long id;
     private String dio;
-
+    private String avatar_url;
     public String getName() {
         return name;
     }
@@ -22,19 +25,5 @@ public class GithubUser {
                 '}';
     }
 
-    public long getId() {
-        return id;
-    }
 
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getDio() {
-        return dio;
-    }
-
-    public void setDio(String dio) {
-        this.dio = dio;
-    }
 }
