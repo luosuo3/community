@@ -17,7 +17,7 @@
 [spring-boot-devtools](https://www.jianshu.com/p/f658fed35786)
 ##脚本
 sql
-```sql
+```sql.
 -- auto-generated definition
 create table user
 (
