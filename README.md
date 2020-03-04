@@ -15,9 +15,9 @@
 [lombok](https://www.cnblogs.com/heyonggang/p/8638374.html)
 [thymeleaf](https://www.thymeleaf.org/)
 [spring-boot-devtools](https://www.jianshu.com/p/f658fed35786)
-##脚本
-sql
-```sql.
+
+## 脚本
+```sql
 -- auto-generated definition
 create table user
 (
