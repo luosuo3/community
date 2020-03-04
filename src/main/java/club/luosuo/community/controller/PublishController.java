@@ -13,8 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
-import javax.xml.crypto.Data;
-import java.util.Date;
 
 @Controller
 public class PublishController {
@@ -22,6 +20,7 @@ public class PublishController {
     QuessionMapper quessionMapper;
     @Autowired
     UserMapper userMapper;
+
     @GetMapping("/publish")
     public String publish() {
         return "publish";
@@ -29,9 +28,9 @@ public class PublishController {
 
     @PostMapping("/publish")
     public String doPublish(
-            @RequestParam(value = "title",required = false) String title,
-            @RequestParam(value = "description",required = false) String description,
-            @RequestParam(value = "tag",required = false) String tag,
+            @RequestParam(value = "title", required = false) String title,
+            @RequestParam(value = "description", required = false) String description,
+            @RequestParam(value = "tag", required = false) String tag,
             HttpServletRequest request,
             Model model
 
@@ -55,7 +54,7 @@ public class PublishController {
 
         Cookie[] cookies = request.getCookies();
         User user = null;
-        if (cookies!=null) {
+        if (cookies != null) {
             for (Cookie cookie : cookies) {
                 if (cookie.getName().equals("token")) {
                     String token = cookie.getValue();

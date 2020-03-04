@@ -1,5 +1,6 @@
 package club.luosuo.community.service;
 
+import club.luosuo.community.dto.PaginationDTO;
 import club.luosuo.community.dto.QuessionDTO;
 import club.luosuo.community.mapper.QuessionMapper;
 import club.luosuo.community.mapper.UserMapper;
@@ -19,17 +20,25 @@ public class QusetionService {
     @Autowired
     UserMapper userMapper;
 
-    public List<QuessionDTO> list() {
-        List<QuessionDTO> quessions = quessionMapper.list();
-        List<Quession> quessionlist = new ArrayList<>();
-        for (QuessionDTO quession : quessions) {
+    public PaginationDTO list(Integer page, Integer size) {
+//        size*(page-1)
+        Integer offset = size * (page - 1);
+        List<Quession> quessions = quessionMapper.list(offset, size);
+        List<QuessionDTO> quessionDTOlist = new ArrayList<>();
+        PaginationDTO paginationDTO = new PaginationDTO();
+        for (Quession quession : quessions) {
             User user = userMapper.findByID(quession.getCreator());
             QuessionDTO quessionDTO = new QuessionDTO();
             BeanUtils.copyProperties(quession, quessionDTO);
             quessionDTO.setUser(user);
+            quessionDTOlist.add(quessionDTO);
+
 
         }
+         paginationDTO.setQuestions(quessionDTOlist );
+        Integer totalCount = quessionMapper.count();
+        paginationDTO.setPagination(totalCount,page,size);
 
-        return null;
+        return paginationDTO;
     }
 }

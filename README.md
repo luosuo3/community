@@ -11,9 +11,10 @@
 ## 工具
 [Git](https://git-scm.com/download)
 [Visual Paradigm](https://www.visual-paradigm.com)
-flayway 
+[Flayway](https://flywaydb.org/)
 [lombok](https://www.cnblogs.com/heyonggang/p/8638374.html)
-
+[thymeleaf](https://www.thymeleaf.org/)
+[spring-boot-devtools](https://www.jianshu.com/p/f658fed35786)
 ##脚本
 sql
 ```sql

@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="css/community.css">
     <script src="../static/js/bootstrap.min.js" type="application/javascript"></script>
 </head>
-<body >
+<body>
 <nav class="navbar navbar-default">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -18,7 +18,7 @@
                 <span class="sr-only">码匠社区</span>
 
             </button>
-            <a class="navbar-brand" href="#">码匠社区</a>
+            <a class="navbar-brand" href="/">码匠社区</a>
         </div>
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -51,7 +51,7 @@
     </div>
 </nav>
 
-<div class="container-fluid main" >
+<div class="container-fluid main">
     <div class="row" style="background-color: white">
         <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
             <h2><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>发起</h2>
@@ -59,29 +59,32 @@
 
             <form action="/publish" method="post">
                 <div class="form-group">
-                    <input type="text" class="form-control"  name="title" id="title" placeholder="问题标题......" th:value="${title}"/>
+                    <input type="text" class="form-control" name="title" id="title" placeholder="问题标题......"
+                           th:value="${title}"/>
                 </div>
                 <div class="form-group">
                     <label for="description">问题补充(必填，请参照右侧)</label>
-                    <textarea name="description" id="description" class="form-control" cols="30" rows="20" th:text="${description}"></textarea>
+                    <textarea name="description" id="description" class="form-control" cols="30" rows="20"
+                              th:text="${description}"></textarea>
                 </div>
 
                 <div class="form-group">
                     <label for="tag">添加标签</label>
-                    <input type="text" class="form-control" id="tag" name="tag" placeholder="输入标签，以逗号分隔" th:value="${tag}"/>
+                    <input type="text" class="form-control" id="tag" name="tag" placeholder="输入标签，以逗号分隔"
+                           th:value="${tag}"/>
                 </div>
                 <div class="container-fluid main btn-public
 ">
                     <div class="row">
-                        <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12" >
+                        <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
                             <div class="alert alert-danger col-lg-12 col-md-12 col-sm-12 col-xs-12"
                                  th:if="${error != null}"
                                  th:text="${error}"
-                                 >
+                            >
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
-                            <button type="submit" class="btn btn-success btn-publish " >
+                            <button type="submit" class="btn btn-success btn-publish ">
                                 发布
                             </button>
                         </div>
@@ -98,6 +101,8 @@
             • 问题补充: 详细补充您的问题内容，并确保问题描述清晰直观, 并提供一些相关的资料<br>
             • 选择标签: 选择一个或者多个合适的标签，用逗号隔开，每个标签不超过10个字<br>
             • 关于积分: 选择一个或者多个合适的标签，用逗号隔开，每个标签不超过10个字<br>
+
+
         </div>
     </div>
 </div>
