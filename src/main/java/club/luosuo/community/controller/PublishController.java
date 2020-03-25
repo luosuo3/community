@@ -1,26 +1,37 @@
 package club.luosuo.community.controller;
 
-import club.luosuo.community.mapper.QuessionMapper;
+import club.luosuo.community.mapper.QuestionMapper;
 import club.luosuo.community.mapper.UserMapper;
-import club.luosuo.community.model.Quession;
+import club.luosuo.community.model.Question;
 import club.luosuo.community.model.User;
+import club.luosuo.community.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class PublishController {
     @Autowired
-    QuessionMapper quessionMapper;
+    QuestionMapper quessionMapper;
     @Autowired
     UserMapper userMapper;
-
+    @Autowired
+    QuestionService questionService;
+    @GetMapping("/publish/{id}")
+    public String edit(@PathVariable(name = "id") Integer id,Model model) {
+        Question question = quessionMapper.getById(id);
+        model.addAttribute("title", question.getTitle());
+        model.addAttribute("description", question.getDescription());
+        model.addAttribute("tag", question.getTag());
+        model.addAttribute("id", question.getId());
+        return "/publish";
+    }
     @GetMapping("/publish")
     public String publish() {
         return "publish";
@@ -31,6 +42,7 @@ public class PublishController {
             @RequestParam(value = "title", required = false) String title,
             @RequestParam(value = "description", required = false) String description,
             @RequestParam(value = "tag", required = false) String tag,
+            @RequestParam(value = "id",required = false) Integer id,
             HttpServletRequest request,
             Model model
 
@@ -52,33 +64,21 @@ public class PublishController {
             return "publish";
         }
 
-        Cookie[] cookies = request.getCookies();
-        User user = null;
-        if (cookies != null) {
-            for (Cookie cookie : cookies) {
-                if (cookie.getName().equals("token")) {
-                    String token = cookie.getValue();
-                    user = userMapper.findByToken(token);
-                    if (user != null) {
-                        request.getSession().setAttribute("user", user);
-                    }
-                    break;
-                }
-            }
-        }
+        User user = (User) request.getSession().getAttribute("user");
 
         if (user == null) {
             model.addAttribute("error", "用户未登陆");
             return "publish";
         }
-        Quession quession = new Quession();
-        quession.setTitle(title);
-        quession.setDescription(description);
-        quession.setTag(tag);
-        quession.setCreator(user.getId());
-        quession.setGmt_create(System.currentTimeMillis());
-        quession.setGmt_modified(quession.getGmt_create());
-        quessionMapper.create(quession);
+        Question question = new Question();
+        question.setTitle(title);
+        question.setDescription(description);
+        question.setTag(tag);
+        question.setCreator(user.getId());
+        question.setGmt_create(System.currentTimeMillis());
+        question.setGmt_modified(question.getGmt_create());
+        question.setId(id);
+        questionService.createOrUpdate(question);
         return "redirect:/";
     }
 }

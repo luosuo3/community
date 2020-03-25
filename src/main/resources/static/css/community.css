@@ -19,3 +19,9 @@ body {
     font-weight: normal;
     color: #999;
 }
+.profile .section {
+    margin: 15px;
+}
+.community-menu {
+    color: #999;
+}

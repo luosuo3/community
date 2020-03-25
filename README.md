@@ -1,4 +1,4 @@
-## 码匠社区
+## 计算机协会社区
 
 ## 资料
 [Spring 文档](https://spring.io/guides)
@@ -15,6 +15,7 @@
 [lombok](https://www.cnblogs.com/heyonggang/p/8638374.html)
 [thymeleaf](https://www.thymeleaf.org/)
 [spring-boot-devtools](https://www.jianshu.com/p/f658fed35786)
+[springMVC](https://docs.spring.io/spring/docs/5.2.4.RELEASE/spring-framework-reference/)
 
 ## 脚本
 ```sql
@@ -32,4 +33,5 @@ create table user
 ```
 ```bash
 mvn flyway:migrate
+mvn -Dmybatis.generator.overwrite = true mybatis-generator：generate
 ```

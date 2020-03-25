@@ -10,7 +10,7 @@ import java.util.List;
  */
 @Data
 public class PaginationDTO {
-    private List<QuessionDTO> questions;
+    private List<QuestionDTO> questions;
     private boolean showPrevious;
     private boolean showFirstPage;
     private boolean showNext;
